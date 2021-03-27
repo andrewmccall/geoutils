@@ -3,8 +3,6 @@ package geoutils
 import (
 	"math"
 	"testing"
-
-	"github.com/mmcloughlin/geohash"
 )
 
 func TestGetGeoHash(t *testing.T) {
@@ -77,7 +75,7 @@ func TestHashValues(t *testing.T) {
 
 func assertHashRoundtrip(lat float64, lng float64, t *testing.T) {
 	hashString, _ := GeoHash(lat, lng, DEFAULT_PRECISION)
-	retLat, retLng := geohash.Decode(hashString)
+	retLat, retLng := LocationFromHash(hashString)
 
 	assertFloatEquals(lat, retLat, 0.01, t)
 	assertFloatEquals(lng, retLng, 0.01, t)
