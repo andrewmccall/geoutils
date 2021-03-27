@@ -9,7 +9,7 @@ import (
 const MAX_PRECISION = 22
 const DEFAULT_PRECISION = 10
 
-func GeoHash(latitude float64, longitude float64, precision int) (string, error) {
+func GeoHash(latitude float64, longitude float64, precision uint) (string, error) {
 	if precision < 1 {
 		return "", errors.New("Precision of GeoHash must be larger than zero!")
 	}
@@ -24,7 +24,7 @@ func GeoHash(latitude float64, longitude float64, precision int) (string, error)
 
 	var buffer strings.Builder
 
-	for i := 0; i < precision; i++ {
+	for i := 0; uint(i) < precision; i++ {
 		var hashValue = 0
 		var val float64
 		var vrange []float64
